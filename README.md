@@ -36,42 +36,6 @@ Build for production
 - Preview the production build locally:
    `npm run preview`
 
-Publishing to GitHub Pages (serve from `main` branch)
-There are two straightforward approaches to host this site on GitHub Pages from the `main` branch:
-
-Option A — Use the `docs/` folder (recommended if you want GitHub Pages from `main` branch)
-1. Build the app into a `docs` folder so GitHub Pages can serve it from the `main` branch:
-    - Build with an explicit outDir (no code changes required):
-       ```pwsh
-       npm run build -- --outDir docs
-       ```
-    - Or set `build.outDir = 'docs'` in `vite.config.ts` (example below).
-2. Commit the generated `docs/` folder to `main` and push.
-3. In your repository settings (GitHub):
-    - Pages → Source: `main` branch / `docs` folder
-    - (Optional) Set the site `base` (see note below)
-
-Option B — Use a `gh-pages` branch or GitHub Action (automated)
-- If you prefer not to commit built files to `main`, use one of the many `gh-pages` deploy actions to publish `dist` to the `gh-pages` branch automatically. I can add an example workflow if you want.
-
-Handling `base` for repo pages (URL path)
-- If you will host the site at `https://<username>.github.io/Remotely/` (i.e., not a user/org root site), set the base path in Vite so assets load correctly. Two ways:
-   1. Build-time flags (CLI):
-       ```pwsh
-       npm run build -- --outDir docs --base /Remotely/
-       ```
-   2. Vite config change (recommended for convenience): edit `vite.config.ts` and add `base` and `build.outDir` for production, eg:
-       ```ts
-       export default defineConfig(({ mode }) => {
-          const env = loadEnv(mode, '.', '');
-          return {
-             base: mode === 'production' ? '/Remotely/' : '/',
-             build: { outDir: 'docs' },
-             // ...existing config
-          }
-       })
-       ```
-
 Environment notes
 - `vite.config.ts` already injects `GEMINI_API_KEY` into `process.env.GEMINI_API_KEY` for use by the client. Keep keys secret; do not commit private keys into the repo. For production builds served publicly, ensure you are not exposing secrets that must remain private.
 
@@ -89,6 +53,3 @@ Need help automating deployment?
 
 License & attribution
 - This repo is a demo. Add a license file if you want to publish with terms.
-
-Enjoy! If you want, I can update `vite.config.ts` now to set `base` + `build.outDir` and/or add a GitHub Action to automate publishing.
-

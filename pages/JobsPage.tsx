@@ -68,10 +68,10 @@ export const JobsPage: React.FC = () => {
 
     // 4. Sorting
     result.sort((a, b) => {
-        if (sortOrder === 'salary_high') return b.salaryMax - a.salaryMax;
-        if (sortOrder === 'salary_low') return a.salaryMin - b.salaryMin;
-        // Default to 'newest' (mock logic: treating higher ID or position as newer roughly)
-        return 0; 
+      if (sortOrder === 'salary_high') return b.salaryMax - a.salaryMax;
+      if (sortOrder === 'salary_low') return a.salaryMin - b.salaryMin;
+      // Default to 'newest' (mock logic: treating higher ID or position as newer roughly)
+      return 0;
     });
 
     return result;
@@ -95,7 +95,7 @@ export const JobsPage: React.FC = () => {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
-                Find your next <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-600">remote adventure</span>
+              Find your next <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">remote adventure</span>
             </h1>
             <p className="text-lg text-slate-500 max-w-xl mx-auto">
                 Curated remote-first opportunities from the world's most innovative companies. 
